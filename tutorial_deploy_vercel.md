@@ -1,123 +1,54 @@
-# 🚀 Tutorial Deploy Portofolio Caroline ke Vercel
+# 🚀 Panduan Lengkap Deploy Portofolio Nabila ke Vercel
 
-## Prasyarat
-- Akun **GitHub** (sudah ada ✅ — repo `mazrohaaniss/portofolio-caroline`)
-- Akun **Vercel** (gratis) — bisa daftar pakai akun GitHub
+## 1. Penyebab Error Sebelumnya (`Permission Denied` / Exit Code 126)
+Error:
+```
+sh: line 1: /vercel/path0/node_modules/.bin/vite: Permission denied
+Error: Command "npm run build" exited with 126
+```
+**Penyebabnya:** Folder `node_modules` sebelumnya sempat ter-push ke GitHub dari Windows. Di sistem Linux (server Vercel), file binary di dalam `node_modules/.bin/` kehilangan izin eksekusi (`chmod +x`).
+
+**Solusi yang sudah dijalankan:**
+1. File `.gitignore` sudah dibuat.
+2. `node_modules` dan `dist` sudah dihapus dari git tracking.
+3. Perubahan sudah di-commit dan di-push ke branch `main`.
 
 ---
 
-## Step 1: Commit & Push Perubahan Terbaru
+## 2. Langkah-Langkah Deploy di Vercel
 
-Buka terminal di folder project, lalu jalankan:
+### Step 1: Buka Dashboard Vercel
+1. Buka **[vercel.com](https://vercel.com)** dan login dengan akun GitHub Anda.
+2. Di dashboard, klik tombol **"Add New..."** lalu pilih **"Project"**.
 
-```bash
-git add .
-git commit -m "cleanup: hapus file duplikat, bersihkan package.json & edit-mode.js"
-git push origin main
-```
+### Step 2: Import Repository
+1. Cari repository **`portofolio-nabila`**.
+2. Klik tombol **"Import"** di sebelah nama repo.
+   *(Jika repo belum muncul, klik "Adjust GitHub App Permissions" lalu beri akses ke repo tersebut).*
+
+### Step 3: Konfigurasi Project
+Vercel akan otomatis mendeteksi konfigurasi Vite:
+- **Framework Preset**: `Vite`
+- **Root Directory**: `./`
+- **Build Command**: `vite build` (atau `npm run build`)
+- **Output Directory**: `dist`
+- **Install Command**: `npm install`
 
 > [!TIP]
-> Pastikan semua perubahan sudah ter-push ke GitHub sebelum deploy.
+> **Biarkan semua pengaturan default!** Tidak perlu mengubah toggle "Override" apapun.
+
+### Step 4: Klik Deploy
+1. Klik tombol **"Deploy"**.
+2. Tunggu sekitar 30 - 60 detik saat Vercel menjalankan:
+   - `npm install` (instalasi bersih di server Linux)
+   - `vite build`
+3. Setelah selesai, layar akan menampilkan konfeti **"Congratulations!"** dan link website aktif Anda (misal `https://portofolio-nabila.vercel.app`).
 
 ---
 
-## Step 2: Buat Akun Vercel (Kalau Belum Punya)
-
-1. Buka **[vercel.com](https://vercel.com)**
-2. Klik **"Sign Up"** (tombol di pojok kanan atas)
-3. Pilih **"Continue with GitHub"**
-4. Authorize Vercel untuk mengakses akun GitHub kamu
-5. Selesai — kamu masuk ke Vercel Dashboard
-
----
-
-## Step 3: Import Repository
-
-1. Di Vercel Dashboard, klik tombol **"Add New..."** → **"Project"**
-2. Kamu akan melihat daftar repository GitHub kamu
-3. Cari **`portofolio-caroline`** lalu klik **"Import"**
-
-> [!NOTE]
-> Kalau repo tidak muncul, klik **"Adjust GitHub App Permissions"** dan tambahkan akses ke repo tersebut.
-
----
-
-## Step 4: Konfigurasi Project
-
-Vercel akan menampilkan halaman konfigurasi. **Biarkan semua default:**
-
-| Setting | Nilai |
-|---------|-------|
-| **Framework Preset** | `Other` (auto-detect) |
-| **Root Directory** | `./` (default) |
-| **Build Command** | _(kosongkan — tidak perlu build)_ |
-| **Output Directory** | _(kosongkan)_ |
-
-Langsung klik **"Deploy"** 🚀
-
----
-
-## Step 5: Tunggu Deploy Selesai
-
-- Vercel akan memproses deploy (biasanya **10-30 detik** saja untuk static site)
-- Kamu akan melihat progress bar dan preview screenshot
-- Setelah selesai, akan muncul **🎉 Congratulations!** dengan preview website
-
----
-
-## Step 6: Akses Website
-
-Setelah deploy berhasil, kamu mendapat URL gratis:
-
-```
-https://portofolio-caroline.vercel.app
-```
-
-> [!IMPORTANT]
-> URL default biasanya `[nama-repo].vercel.app`. Kalau sudah dipakai orang lain, Vercel akan menambahkan suffix random seperti `portofolio-caroline-xyz.vercel.app`.
-
----
-
-## Step 7 (Opsional): Custom Domain
-
-Kalau kamu punya domain sendiri (misal `carolinemaharani.com`):
-
-1. Di Vercel Dashboard, buka project **portofolio-caroline**
-2. Klik tab **"Settings"** → **"Domains"**
-3. Ketik domain kamu → klik **"Add"**
-4. Vercel akan memberikan DNS records yang perlu kamu set di provider domain kamu
-5. Tunggu propagasi DNS (biasanya 5-30 menit)
-
----
-
-## 🔄 Auto-Deploy (Fitur Otomatis)
-
-Setelah setup, setiap kali kamu **push ke branch `main`**, Vercel otomatis deploy ulang! Jadi workflow-nya:
-
-```bash
-# Edit file...
-git add .
-git commit -m "update: perubahan terbaru"
-git push origin main
-# ⚡ Vercel otomatis deploy dalam hitungan detik!
-```
-
----
-
-## ❓ FAQ
-
-### Perlu `vercel.json`?
-**Tidak.** Project ini static HTML biasa, Vercel langsung detect dan serve `index.html`.
-
-### Perlu `npm run build`?
-**Tidak.** Tidak ada build step — file HTML/CSS/JS langsung di-serve.
-
-### Apa gratis?
-**Ya!** Vercel Hobby Plan gratis untuk project personal, termasuk:
-- HTTPS otomatis (SSL)
-- CDN global (website cepat diakses dari mana saja)
-- Auto-deploy dari GitHub
-- 100GB bandwidth/bulan
-
-### Kalau mau ganti konten website?
-Edit file di lokal → commit → push → otomatis deploy ulang.
+## 3. Jika Sebelumnya Sudah Pernah Buat Project di Vercel (Redeploy)
+Jika project `portofolio-nabila` sudah ada di Vercel dan tadi statusnya "Failed":
+1. Buka project tersebut di Vercel.
+2. Buka tab **"Deployments"**.
+3. Vercel biasanya akan otomatis mendeteksi push commit terbaru (`fix: remove node_modules and dist...`) dan langsung memulai deploy baru secara otomatis.
+4. Atau Anda bisa klik titik tiga (**...**) pada commit terbaru lalu pilih **"Redeploy"**.
