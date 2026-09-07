@@ -52,6 +52,22 @@ export const awards = [
     hasDocument: true
   },
   {
+    title: "International Guest Lecturer Series 'HR Transformation in Digital Age'",
+    issuer: "Faculty of Economics & Business UDINUS & Northern University",
+    year: "2023",
+    category: "Seminar Internasional",
+    fileUrl: "/sertif 1.pdf",
+    hasDocument: true
+  },
+  {
+    title: "International Webinar 'Research Opportunities in Sustainability Accounting'",
+    issuer: "Master of Accounting UDINUS & APSSAI",
+    year: "2024",
+    category: "Webinar Internasional",
+    fileUrl: "/sertif 2.pdf",
+    hasDocument: true
+  },
+  {
     title: "Seminar Persiapan Karier 'Siap Menghadapi Tantangan Kerja'",
     issuer: "UPT Layanan Karir dan Alumni UDINUS",
     year: "2025",
