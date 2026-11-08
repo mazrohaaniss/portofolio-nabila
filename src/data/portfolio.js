@@ -23,7 +23,7 @@ export const experiences = [
   {
     role: "Staff Admin",
     company: "PT Posporindo Nusantara",
-    period: "Feb 2023 - Mar 2023",
+    period: "2025 - 2026",
     type: "Magang / Internship",
     description: [
       "Melakukan pencatatan dan input data pengeluaran harian untuk mendukung ketertiban administrasi keuangan operasional.",
@@ -31,10 +31,30 @@ export const experiences = [
       "Memeriksa kelengkapan dan kesesuaian data serta dokumen administrasi sebelum digunakan dalam kegiatan operasional.",
       "Mendukung kegiatan administrasi harian dan proses pengiriman barang agar berjalan secara tertib dan terdokumentasi rapi."
     ]
+  },
+  {
+    role: "Staff Operasional",
+    company: "AgungRent",
+    period: "2025",
+    type: "Pengalaman Kerja",
+    description: [
+      "Membantu pembuatan nota penjualan untuk mendukung proses transaksi.",
+      "Membantu proses pemesanan melalui website AgungRent sesuai kebutuhan operasional."
+    ]
   }
 ];
 
+
+
 export const awards = [
+  {
+    title: "Juara II Kategori Start Up Bisnis & Kewirausahaan Lanjut",
+    issuer: "Universitas Dian Nuswantoro Semarang",
+    year: "2025",
+    category: "Penghargaan",
+    fileUrl: "/Juara_II.pdf",
+    hasDocument: true
+  },
   {
     title: "Sertifikasi Kompetensi Konsultan Pratama Bidang MSDM IKM",
     issuer: "LSP Universitas Dian Nuswantoro (BNSP)",
