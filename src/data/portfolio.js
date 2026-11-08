@@ -50,7 +50,7 @@ export const awards = [
   {
     title: "Juara II Kategori Start Up Bisnis & Kewirausahaan Lanjut",
     issuer: "Universitas Dian Nuswantoro Semarang",
-    year: "2025",
+    year: "2023",
     category: "Penghargaan",
     fileUrl: "/Juara_II.pdf",
     hasDocument: true
